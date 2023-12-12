@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file>assets/JetBrainsMono-Bold.ttf</file>
+        <file>assets/JetBrainsMono-BoldItalic.ttf</file>
+        <file>assets/JetBrainsMono-ExtraBold.ttf</file>
+        <file>assets/JetBrainsMono-ExtraBoldItalic.ttf</file>
+        <file>assets/JetBrainsMono-ExtraLight.ttf</file>
+        <file>assets/JetBrainsMono-ExtraLightItalic.ttf</file>
+        <file>assets/JetBrainsMono-Italic.ttf</file>
+        <file>assets/JetBrainsMono-Light.ttf</file>
+        <file>assets/JetBrainsMono-LightItalic.ttf</file>
+        <file>assets/JetBrainsMono-Medium.ttf</file>
+        <file>assets/JetBrainsMono-MediumItalic.ttf</file>
+        <file>assets/JetBrainsMono-Regular.ttf</file>
+        <file>assets/JetBrainsMono-SemiBold.ttf</file>
+        <file>assets/JetBrainsMono-SemiBoldItalic.ttf</file>
+        <file>assets/JetBrainsMono-Thin.ttf</file>
+        <file>assets/JetBrainsMono-ThinItalic.ttf</file>
+    </qresource>
+    <qresource prefix="/theme">
+        <file>assets/theme.qml</file>
+        <file>assets/Theme.js</file>
+    </qresource>
+</RCC>
