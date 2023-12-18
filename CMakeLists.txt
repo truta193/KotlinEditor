@@ -25,7 +25,7 @@ qt_add_qml_module(appKotlinEditor
     SOURCES
     SOURCES highlighter.h highlighter.cpp
     SOURCES
-    SOURCES shhandler.h shhandler.cpp
+    SOURCES syntaxHandler.h syntaxHandler.cpp
     SOURCES theme.h theme.cpp
     SOURCES filehandler.h filehandler.cpp
 )

@@ -24,7 +24,7 @@ Rectangle {
             color: theme.foreground
             selectionColor: theme.currentLine
             Component.onCompleted: {
-                shHandler.setDocument(codeEditor.textDocument)
+                syntaxHandler.setDocument(codeEditor.textDocument)
             }
 
             background: Rectangle {
@@ -38,7 +38,7 @@ Rectangle {
                             } else {
                                 border.color =  theme.background
                             }
-            onTextChanged: { fHandler.setScript(codeEditor.text)}
+            onTextChanged: { fileHandler.setScript(codeEditor.text)}
 
         }
     }

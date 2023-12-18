@@ -10,7 +10,7 @@ class FileHandler : public QObject
 {
     Q_OBJECT
 private:
-    QString fileName = QString("script.kt");
+    QString fileName = QString("script.kts");
     QString filePath;
     QString script;
     QFile *file;

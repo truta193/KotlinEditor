@@ -1,12 +1,12 @@
-#include "shhandler.h"
+#include "syntaxHandler.h"
 #include "highlighter.h"
 #include<QFile>
 
-SHHandler::SHHandler(QObject *parent)
+SyntaxHandler::SyntaxHandler(QObject *parent)
     : QObject{parent}
 {}
 
-void SHHandler::openFile(const QString& path)
+void SyntaxHandler::openFile(const QString& path)
 {
     QUrl url(path);
     QFile file(url.toLocalFile());
@@ -18,18 +18,18 @@ void SHHandler::openFile(const QString& path)
     file.close();
 }
 
-void SHHandler::setDocument(QQuickTextDocument* document)
+void SyntaxHandler::setDocument(QQuickTextDocument* document)
 {
     auto highlighter = new Highlighter(document->textDocument());
     Q_UNUSED(highlighter)
 }
 
-QString SHHandler::text() const
+QString SyntaxHandler::text() const
 {
     return m_text;
 }
 
-void SHHandler::setText(QString text)
+void SyntaxHandler::setText(QString text)
 {
     if (m_text != text) {
         m_text = text;

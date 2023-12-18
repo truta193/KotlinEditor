@@ -3,7 +3,7 @@
 #include <QFontDatabase>
 #include <QQmlContext>
 #include "highlighter.h"
-#include "shhandler.h"
+#include "syntaxHandler.h"
 #include "theme.h"
 #include "filehandler.h"
 
@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    SHHandler *handler = new SHHandler();
+    SyntaxHandler *syntaxHandler = new SyntaxHandler();
     Theme *theme = new Theme();
     FileHandler *fileHandler = new FileHandler();
 
@@ -22,9 +22,9 @@ int main(int argc, char *argv[])
     qmlRegisterType<FileHandler>("FileHandler", 1, 0, "FileHandler");
 
     QQmlContext* rootContext = engine.rootContext();
-    rootContext->setContextProperty("shHandler", handler);
+    rootContext->setContextProperty("syntaxHandler", syntaxHandler);
     rootContext->setContextProperty("theme", theme);
-    rootContext->setContextProperty("fHandler", fileHandler);
+    rootContext->setContextProperty("fileHandler", fileHandler);
 
     const QUrl url(u"qrc:/KotlinEditor/App.qml"_qs);
     QObject::connect(
