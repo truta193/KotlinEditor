@@ -31,6 +31,7 @@ Rectangle {
             anchors.top: parent.top
             anchors.right: minimizeButton.left
             anchors.rightMargin: 100
+            onReleased: fHandler.saveFile()
         }
 
 

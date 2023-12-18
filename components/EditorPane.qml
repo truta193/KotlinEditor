@@ -12,8 +12,6 @@ Rectangle {
     radius: 12
     color: theme.background
 
-
-
     ScrollView {
         id: sv
         anchors.fill: parent
@@ -25,7 +23,6 @@ Rectangle {
             font.family: "JetBrains Mono"
             color: theme.foreground
             selectionColor: theme.currentLine
-            text: shHandler.text
             Component.onCompleted: {
                 shHandler.setDocument(codeEditor.textDocument)
             }
@@ -41,6 +38,7 @@ Rectangle {
                             } else {
                                 border.color =  theme.background
                             }
+            onTextChanged: { fHandler.setScript(codeEditor.text)}
 
         }
     }
