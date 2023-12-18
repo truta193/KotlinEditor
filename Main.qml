@@ -1,8 +1,6 @@
 import QtQuick
 import "components"
 
-import "qrc:/theme/assets/Theme.js" as Colors
-
 Rectangle {
     id: centralWidget
     width: parent.width
@@ -26,6 +24,15 @@ Rectangle {
             grabPermissions: TapHandler.CanTakeOverFromAnything
             onActiveChanged: if (active) { window.startSystemMove(); }
         }
+
+        ActionButton {
+            id: runButton
+            iconPath: "qrc:/icons/assets/ic_run.svg"
+            anchors.top: parent.top
+            anchors.right: minimizeButton.left
+            anchors.rightMargin: 100
+        }
+
 
         ActionButton {
             id: minimizeButton

@@ -17,8 +17,7 @@
         <file>assets/JetBrainsMono-Thin.ttf</file>
         <file>assets/JetBrainsMono-ThinItalic.ttf</file>
     </qresource>
-    <qresource prefix="/theme">
-        <file>assets/theme.qml</file>
-        <file>assets/Theme.js</file>
+    <qresource prefix="/icons">
+        <file>assets/ic_run.svg</file>
     </qresource>
 </RCC>

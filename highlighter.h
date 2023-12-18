@@ -32,5 +32,9 @@ private:
     QTextCharFormat multiLineCommentFormat;
     QTextCharFormat quotationFormat;
     QTextCharFormat functionFormat;
+    QTextCharFormat numberFormat;
+    QTextCharFormat methodFormat;
+    QTextCharFormat parenthesisFormat;
+    QTextCharFormat inheritedClassFormat;
 };
 #endif // HIGHLIGHTER_H

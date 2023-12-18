@@ -32,8 +32,6 @@ int main(int argc, char *argv[])
     engine.load(url);
 
 
-
-
     QFontDatabase::addApplicationFont(QString(":/fonts/assets/JetBrainsMono-Regular.ttf"));
     QFontDatabase::addApplicationFont(QString(":/fonts/assets/JetBrainsMono-Bold.ttf"));
     QFontDatabase::addApplicationFont(QString(":/fonts/assets/JetBrainsMono-BoldItalic.ttf"));

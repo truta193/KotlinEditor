@@ -16,7 +16,7 @@ Rectangle {
 
     ScrollView {
         id: sv
-        anchors.fill: parents
+        anchors.fill: parent
 
         TextArea {
             id: codeEditor
@@ -33,7 +33,6 @@ Rectangle {
             background: Rectangle {
                     color: "#00000000"
                 }
-
 
             selectByMouse: true
             selectByKeyboard: true

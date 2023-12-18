@@ -1,6 +1,5 @@
 import QtQuick 2.15
 import QtQuick.Controls.Basic
-import "qrc:/theme/assets/Theme.js" as Colors
 
 Button {
     id: actionButton
@@ -9,8 +8,9 @@ Button {
     property color defaultColor: "#00FFFFFF"
     property color hoverColor: "#44FFFFFF"
     property color clickColor: "#88FFFFFF"
-    property color textColor: Colors.colors.foreground
+    property color textColor: theme.foreground
     property string textText: ""
+    property string iconPath: ""
 
     contentItem: Text {
         id: buttonText
@@ -31,6 +31,14 @@ Button {
                                        actionButton.hovered ? actionButton.hoverColor : actionButton.defaultColor
                                    }
 
+    }
+
+    IconImage {
+        id: iconSrc
+        anchors.fill: parent
+        anchors.margins: 0
+        scale: 1.3
+        source: iconPath
     }
 
     background: Rectangle {
