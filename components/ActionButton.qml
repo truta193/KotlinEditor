@@ -32,14 +32,12 @@ Button {
                                    } else {
                                        actionButton.hovered ? actionButton.hoverColor : actionButton.defaultColor
                                    }
-
     }
 
     IconImage {
         id: iconSrc
         anchors.fill: parent
         anchors.margins: 0
-        scale: 1.3
         source: iconPath
         opacity: if (actionButton.enabled) return 1.0; else return 0.4;
     }

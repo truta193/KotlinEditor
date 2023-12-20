@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls.Basic
 import QtQuick.Layouts
+
 Rectangle {
     property alias readOnlyMode: codeEditor.readOnly
     property alias text: codeEditor.text
@@ -47,7 +48,6 @@ Rectangle {
                 if(!isOutput)
                     fileHandler.setScript(codeEditor.text)
             }
-
         }
     }
 }

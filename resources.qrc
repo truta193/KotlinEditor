@@ -19,5 +19,9 @@
     </qresource>
     <qresource prefix="/icons">
         <file>assets/ic_run.svg</file>
+        <file>assets/ic_close.svg</file>
+        <file>assets/ic_maximize.svg</file>
+        <file>assets/ic_maximize_back.svg</file>
+        <file>assets/ic_minimize.svg</file>
     </qresource>
 </RCC>

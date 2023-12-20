@@ -1,5 +1,4 @@
-#ifndef THEME_H
-#define THEME_H
+#pragma once
 
 #include <QObject>
 #include <QColor>
@@ -18,6 +17,7 @@ class Theme : public QObject
     Q_PROPERTY(QColor purple READ purple CONSTANT)
     Q_PROPERTY(QColor red READ red CONSTANT)
     Q_PROPERTY(QColor yellow READ yellow CONSTANT)
+
 public:
     explicit Theme(QObject *parent = nullptr);
     QColor background();
@@ -45,5 +45,3 @@ private:
     QColor m_red;
     QColor m_yellow;
 };
-
-#endif // THEME_H

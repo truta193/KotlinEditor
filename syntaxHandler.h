@@ -19,13 +19,10 @@ public:
     Q_INVOKABLE void openFile(const QString& path);
     Q_INVOKABLE void setDocument(QQuickTextDocument* document);
 
-
 public slots:
     QString getText();
     void setText(QString text);
 
 signals:
     void textChanged(QString text);
-
 };
-

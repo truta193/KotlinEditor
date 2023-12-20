@@ -30,6 +30,7 @@ qt_add_qml_module(appKotlinEditor
     SOURCES filehandler.h filehandler.cpp
     SOURCES
     SOURCES processhandler.h processhandler.cpp
+    QML_FILES components/Toolbar.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
