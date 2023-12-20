@@ -1,5 +1,4 @@
-#ifndef FILEHANDLER_H
-#define FILEHANDLER_H
+#pragma once
 
 #include <QObject>
 #include <QFile>
@@ -20,6 +19,7 @@ private:
     QString m_output = "";
     bool m_isBusy = false;
     QFile *file;
+
 public:
     explicit FileHandler(QObject *parent = nullptr);
     Q_INVOKABLE bool saveFile();
@@ -41,4 +41,3 @@ signals:
     void scriptChanged();
 };
 
-#endif // FILEHANDLER_H

@@ -16,7 +16,8 @@ FileHandler::FileHandler(QObject *parent)
     qInfo() << filePath;
 }
 
-bool FileHandler::saveFile() {
+bool FileHandler::saveFile()
+{
     file->resize(0);
     file->open(QIODeviceBase::ReadWrite);
     int err = file->write(m_script.toUtf8());
@@ -29,27 +30,6 @@ bool FileHandler::saveFile() {
     return true;
 }
 
-void FileHandler::setScript(QString text) {
-    if (m_script != text){
-        this->m_script = text;
-        emit scriptChanged();
-    }
-}
-
-QString FileHandler::getScript() {
-    return this->m_script;
-}
-
-QString FileHandler::getOutput()
-{
-    return m_output;
-}
-
-void FileHandler::appendOutput(QString text) {
-    m_output += text;
-    emit outputChanged();
-}
-
 void FileHandler::setOutput(QString &text)
 {
     m_output = text;
@@ -57,13 +37,39 @@ void FileHandler::setOutput(QString &text)
 
 }
 
-bool FileHandler::getIsBusy() {
+QString FileHandler::getOutput()
+{
+    return m_output;
+}
+
+void FileHandler::appendOutput(QString text)
+{
+    m_output += text;
+    emit outputChanged();
+}
+
+bool FileHandler::getIsBusy()
+{
     return m_isBusy;
 }
 
-void FileHandler::setIsBusy(bool busy) {
+void FileHandler::setIsBusy(bool busy)
+{
     if (busy != m_isBusy) {
         m_isBusy = busy;
         emit isBusyChanged();
+    }
+}
+
+QString FileHandler::getScript()
+{
+    return this->m_script;
+}
+
+void FileHandler::setScript(QString text)
+{
+    if (m_script != text){
+        this->m_script = text;
+        emit scriptChanged();
     }
 }

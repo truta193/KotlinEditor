@@ -4,7 +4,8 @@
 
 SyntaxHandler::SyntaxHandler(QObject *parent)
     : QObject{parent}
-{}
+{
+}
 
 void SyntaxHandler::openFile(const QString& path)
 {
@@ -24,7 +25,7 @@ void SyntaxHandler::setDocument(QQuickTextDocument* document)
     Q_UNUSED(highlighter)
 }
 
-QString SyntaxHandler::text() const
+QString SyntaxHandler::getText()
 {
     return m_text;
 }

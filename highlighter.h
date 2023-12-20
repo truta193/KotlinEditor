@@ -1,5 +1,4 @@
-#ifndef HIGHLIGHTER_H
-#define HIGHLIGHTER_H
+#pragma once
 
 #include <QSyntaxHighlighter>
 #include <QTextCharFormat>
@@ -37,4 +36,3 @@ private:
     QTextCharFormat parenthesisFormat;
     QTextCharFormat inheritedClassFormat;
 };
-#endif // HIGHLIGHTER_H

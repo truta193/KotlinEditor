@@ -4,7 +4,6 @@
 ProcessHandler::ProcessHandler(QObject *parent, FileHandler *fileHandler)
     : QObject{parent}, process(new QProcess(this))
 {
-    //connect(process, &QProcess::finished, this, &ProcessHandler::processFinished);
     connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &ProcessHandler::processFinished);
     connect(process, &QProcess::errorOccurred, this, &ProcessHandler::processError);
     connect(process, &QProcess::readyReadStandardOutput, this, &ProcessHandler::processOutputUpdate);
@@ -35,9 +34,6 @@ void ProcessHandler::processFinished(int exitCode, QProcess::ExitStatus exitStat
     }
     fileHandler->appendOutput("Process finished with exit code: " + QString::number(exitCode) + "\n");
     fileHandler->setIsBusy(false);
-    // QString output = process->readAllStandardOutput();
-    // fileHandler->appendOutput(output);
-    //emit resultReady(output);
 }
 
 void ProcessHandler::processError(QProcess::ProcessError error)
@@ -46,8 +42,8 @@ void ProcessHandler::processError(QProcess::ProcessError error)
     //emit resultReady("Error occurred: " + process->errorString());
 }
 
-void ProcessHandler::processOutputUpdate() {
+void ProcessHandler::processOutputUpdate()
+{
     QString output = process->readAllStandardOutput();
-    qInfo() << "updateeee";
     fileHandler->appendOutput(output);
 }
