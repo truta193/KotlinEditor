@@ -12,6 +12,7 @@ Button {
     property color textColor: theme.foreground
     property string textText: ""
     property string iconPath: ""
+    property bool isEnabled: enabled
 
     contentItem: Text {
         id: buttonText
@@ -40,6 +41,7 @@ Button {
         anchors.margins: 0
         scale: 1.3
         source: iconPath
+        opacity: if (actionButton.enabled) return 1.0; else return 0.4;
     }
 
     background: Rectangle {

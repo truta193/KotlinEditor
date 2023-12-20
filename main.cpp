@@ -6,6 +6,7 @@
 #include "syntaxHandler.h"
 #include "theme.h"
 #include "filehandler.h"
+#include "processhandler.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,15 +17,18 @@ int main(int argc, char *argv[])
     SyntaxHandler *syntaxHandler = new SyntaxHandler();
     Theme *theme = new Theme();
     FileHandler *fileHandler = new FileHandler();
+    ProcessHandler *processHandler = new ProcessHandler();
 
     qmlRegisterType<Highlighter>("Highlighter", 1, 0, "Highlighter");
     qmlRegisterType<Theme>("Theme", 1, 0, "Theme");
     qmlRegisterType<FileHandler>("FileHandler", 1, 0, "FileHandler");
+    qmlRegisterType<ProcessHandler>("ProcessHandler", 1, 0, "ProcessHandler");
 
     QQmlContext* rootContext = engine.rootContext();
     rootContext->setContextProperty("syntaxHandler", syntaxHandler);
     rootContext->setContextProperty("theme", theme);
     rootContext->setContextProperty("fileHandler", fileHandler);
+    rootContext->setContextProperty("processHandler", processHandler);
 
     const QUrl url(u"qrc:/KotlinEditor/App.qml"_qs);
     QObject::connect(

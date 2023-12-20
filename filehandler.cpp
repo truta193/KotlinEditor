@@ -1,5 +1,5 @@
 #include "filehandler.h"
-
+#include <processhandler.h>
 FileHandler::FileHandler(QObject *parent)
     : QObject{parent}
 {
@@ -16,29 +16,54 @@ FileHandler::FileHandler(QObject *parent)
     qInfo() << filePath;
 }
 
-bool FileHandler::saveFile(QString &text) {
-    file->resize(0);
-    file->open(QIODeviceBase::ReadWrite);
-    int err = file->write(text.toUtf8());
-    file->close();
-    if (err == -1) {
-        return false;
-    }
-    return true;
-}
-
 bool FileHandler::saveFile() {
     file->resize(0);
     file->open(QIODeviceBase::ReadWrite);
-    int err = file->write(script.toUtf8());
+    int err = file->write(m_script.toUtf8());
     file->close();
     if (err == -1) {
         return false;
     }
+    ProcessHandler *ph = new ProcessHandler(nullptr, this);
+    ph->runScript(filePath, filePath + "/" + fileName);
     return true;
 }
 
 void FileHandler::setScript(QString text) {
-    this->script = text;
-    qInfo() << text;
+    if (m_script != text){
+        this->m_script = text;
+        emit scriptChanged();
+    }
+}
+
+QString FileHandler::getScript() {
+    return this->m_script;
+}
+
+QString FileHandler::getOutput()
+{
+    return m_output;
+}
+
+void FileHandler::appendOutput(QString text) {
+    m_output += text;
+    emit outputChanged();
+}
+
+void FileHandler::setOutput(QString &text)
+{
+    m_output = text;
+    emit outputChanged();
+
+}
+
+bool FileHandler::getIsBusy() {
+    return m_isBusy;
+}
+
+void FileHandler::setIsBusy(bool busy) {
+    if (busy != m_isBusy) {
+        m_isBusy = busy;
+        emit isBusyChanged();
+    }
 }

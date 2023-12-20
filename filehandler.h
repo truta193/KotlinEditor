@@ -9,18 +9,36 @@
 class FileHandler : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString output READ getOutput WRITE setOutput NOTIFY outputChanged)
+    Q_PROPERTY(bool isBusy READ getIsBusy WRITE setIsBusy NOTIFY isBusyChanged)
+    Q_PROPERTY(QString script READ getScript WRITE setScript NOTIFY scriptChanged)
+
 private:
     QString fileName = QString("script.kts");
     QString filePath;
-    QString script;
+    QString m_script = "";
+    QString m_output = "";
+    bool m_isBusy = false;
     QFile *file;
 public:
     explicit FileHandler(QObject *parent = nullptr);
-    bool saveFile(QString& text);
-public slots:
     Q_INVOKABLE bool saveFile();
-    Q_INVOKABLE void setScript(QString text);
 
+public slots:
+    void setOutput(QString &text);
+    QString getOutput();
+    void appendOutput(QString text);
+
+    void setIsBusy(bool busy);
+    bool getIsBusy();
+
+    void setScript(QString text);
+    QString getScript();
+
+signals:
+    void outputChanged();
+    void isBusyChanged();
+    void scriptChanged();
 };
 
 #endif // FILEHANDLER_H

@@ -3,6 +3,9 @@ import QtQuick.Controls.Basic
 import QtQuick.Layouts
 Rectangle {
     property alias readOnlyMode: codeEditor.readOnly
+    property alias text: codeEditor.text
+    property bool isHighlightingEnabled: true
+    property bool isOutput: false
 
     width: parent.width
     height: parent.height
@@ -13,10 +16,11 @@ Rectangle {
     color: theme.background
 
     ScrollView {
-        id: sv
+        id: scrollView
         anchors.fill: parent
 
         TextArea {
+            text: if (isOutput) fileHandler.output; else fileHandler.script;
             id: codeEditor
             anchors.margins: 12
             font.pointSize: 12
@@ -24,9 +28,9 @@ Rectangle {
             color: theme.foreground
             selectionColor: theme.currentLine
             Component.onCompleted: {
-                syntaxHandler.setDocument(codeEditor.textDocument)
+                if (isHighlightingEnabled)
+                    syntaxHandler.setDocument(codeEditor.textDocument)
             }
-
             background: Rectangle {
                     color: "#00000000"
                 }
@@ -38,13 +42,12 @@ Rectangle {
                             } else {
                                 border.color =  theme.background
                             }
-            onTextChanged: { fileHandler.setScript(codeEditor.text)}
+
+            onTextChanged: {
+                if(!isOutput)
+                    fileHandler.setScript(codeEditor.text)
+            }
 
         }
     }
-
-
-
-
-
 }

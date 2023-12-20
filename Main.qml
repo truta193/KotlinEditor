@@ -1,5 +1,7 @@
 import QtQuick
 import "components"
+import QtQuick.Controls.Basic
+import QtQuick.Layouts
 
 Rectangle {
     id: centralWidget
@@ -31,7 +33,21 @@ Rectangle {
             anchors.top: parent.top
             anchors.right: minimizeButton.left
             anchors.rightMargin: 100
-            onReleased: fileHandler.saveFile()
+            onReleased: {
+                fileHandler.saveFile()
+            }
+
+            Connections {
+                target: fileHandler
+
+                function onIsBusyChanged() {
+                    if (fileHandler.isBusy === true)
+                        runButton.enabled = false
+                    else
+                        runButton.enabled = true
+                }
+            }
+
         }
 
 
@@ -75,7 +91,11 @@ Rectangle {
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
+            isOutput: false
+            isHighlightingEnabled: true
+
         }
+
 
         EditorPane {
             id: outputPane
@@ -83,7 +103,10 @@ Rectangle {
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
+            isOutput: true
+            isHighlightingEnabled: false
             readOnlyMode: true
+
         }
 
     }
