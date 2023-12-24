@@ -80,7 +80,8 @@ void FileHandler::setScript(QString text)
     }
 }
 
-void FileHandler::terminateProcess(QObject *obj) {
+void FileHandler::terminateProcess(QObject *obj)
+{
     qInfo() << "terminate Obj";
     if (obj != nullptr)
         delete obj;

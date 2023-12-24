@@ -13,7 +13,10 @@ public:
 
 protected:
     void highlightBlock(const QString &text);
-    void mousePressEvent(QTextDocument *document, const QTextCursor &cursor, const QTextBlock &block, const QPoint &pos);
+    void mousePressEvent(QTextDocument *document,
+                         const QTextCursor &cursor,
+                         const QTextBlock &block,
+                         const QPoint &pos);
 
 private:
     struct HighlightingRule
