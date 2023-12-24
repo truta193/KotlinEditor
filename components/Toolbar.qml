@@ -1,5 +1,5 @@
 import QtQuick 2.15
-
+import QtQuick.Controls.Basic
 
 Rectangle {
     id: toolbar
@@ -39,6 +39,20 @@ Rectangle {
                     runButton.enabled = true
             }
         }
+    }
+
+    Label {
+        id: appLabel
+        anchors.top: parent.top
+        anchors.left: parent.left
+        leftPadding: 12
+        text: "Kotlin Script Editor"
+        antialiasing: true
+        verticalAlignment: TextInput.AlignVCenter
+        height: toolbar.height
+        color: theme.foreground
+        font.pointSize: 14
+        font.family: "JetBrains Mono"
     }
 
     ActionButton {

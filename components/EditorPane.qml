@@ -30,12 +30,13 @@ Rectangle {
             selectionColor: theme.currentLine
             Component.onCompleted: {
                 if (isHighlightingEnabled)
-                    syntaxHandler.setDocument(codeEditor.textDocument)
+                    syntaxHandler.setDocument(codeEditor.textDocument, false);
+                else
+                    syntaxHandler.setDocument(codeEditor.textDocument, true);
             }
             background: Rectangle {
                     color: "#00000000"
                 }
-
             selectByMouse: true
             selectByKeyboard: true
             onFocusChanged: if (focus) {

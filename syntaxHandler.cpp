@@ -1,5 +1,6 @@
 #include "syntaxHandler.h"
 #include "highlighter.h"
+#include "linker.h"
 #include<QFile>
 
 SyntaxHandler::SyntaxHandler(QObject *parent)
@@ -19,10 +20,17 @@ void SyntaxHandler::openFile(const QString& path)
     file.close();
 }
 
-void SyntaxHandler::setDocument(QQuickTextDocument* document)
+void SyntaxHandler::setDocument(QQuickTextDocument* document, bool isOutput)
 {
-    auto highlighter = new Highlighter(document->textDocument());
-    Q_UNUSED(highlighter)
+    if (!isOutput)
+    {
+        auto highlighter = new Highlighter(document->textDocument());
+        Q_UNUSED(highlighter)
+    } else {
+        auto highlighter = new Linker(document->textDocument());
+        Q_UNUSED(highlighter)
+    }
+
 }
 
 QString SyntaxHandler::getText()
@@ -32,7 +40,8 @@ QString SyntaxHandler::getText()
 
 void SyntaxHandler::setText(QString text)
 {
-    if (m_text != text) {
+    if (m_text != text)
+    {
         m_text = text;
         emit textChanged(text);
     }

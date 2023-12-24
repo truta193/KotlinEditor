@@ -4,7 +4,8 @@ FileHandler::FileHandler(QObject *parent)
     : QObject{parent}
 {
     QString folder = QStandardPaths::locate(QStandardPaths::TempLocation, "KotlinEditor", QStandardPaths::LocateDirectory);
-    if (folder.isEmpty()) {
+    if (folder.isEmpty())
+    {
         QDir tempDir = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
         tempDir.mkdir(QString("KotlinEditor"));
     }
@@ -22,7 +23,8 @@ bool FileHandler::saveFile()
     file->open(QIODeviceBase::ReadWrite);
     int err = file->write(m_script.toUtf8());
     file->close();
-    if (err == -1) {
+    if (err == -1)
+    {
         return false;
     }
     ProcessHandler *ph = new ProcessHandler(nullptr, this);
@@ -55,7 +57,8 @@ bool FileHandler::getIsBusy()
 
 void FileHandler::setIsBusy(bool busy)
 {
-    if (busy != m_isBusy) {
+    if (busy != m_isBusy)
+    {
         m_isBusy = busy;
         emit isBusyChanged();
     }
@@ -68,7 +71,8 @@ QString FileHandler::getScript()
 
 void FileHandler::setScript(QString text)
 {
-    if (m_script != text){
+    if (m_script != text)
+    {
         this->m_script = text;
         emit scriptChanged();
     }

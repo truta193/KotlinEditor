@@ -8,14 +8,13 @@ Rectangle {
     width: parent.width
     height: parent.height
     anchors.fill: parent
-    color: "#44475A"
+    color: theme.currentLine
 
     Toolbar {
         id: toolBar
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: 40
     }
 
     Rectangle {
@@ -35,9 +34,7 @@ Rectangle {
             anchors.bottom: parent.bottom
             isOutput: false
             isHighlightingEnabled: true
-
         }
-
 
         EditorPane {
             id: outputPane
@@ -48,10 +45,6 @@ Rectangle {
             isOutput: true
             isHighlightingEnabled: false
             readOnlyMode: true
-
         }
-
     }
-
-
 }

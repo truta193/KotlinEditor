@@ -29,7 +29,8 @@ void ProcessHandler::runScript(QString cwd, QString script)
 
 void ProcessHandler::processFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-    if (exitCode != 0 || exitStatus == QProcess::CrashExit) {
+    if (exitCode != 0 || exitStatus == QProcess::CrashExit)
+    {
         fileHandler->appendOutput(process->readAllStandardError());
     }
     fileHandler->appendOutput("Process finished with exit code: " + QString::number(exitCode) + "\n");

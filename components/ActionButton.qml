@@ -1,7 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls.Basic
 
-
 Button {
     id: actionButton
     width: 45
@@ -34,12 +33,19 @@ Button {
                                    }
     }
 
+    BusyIndicator {
+        id: busyIndicator
+        anchors.fill: parent
+        running: !actionButton.enabled
+        palette.dark: theme.foreground
+    }
+
     IconImage {
         id: iconSrc
         anchors.fill: parent
         anchors.margins: 0
         source: iconPath
-        opacity: if (actionButton.enabled) return 1.0; else return 0.4;
+        opacity: if (actionButton.enabled) return 1.0; else return 0.0;
     }
 
     background: Rectangle {

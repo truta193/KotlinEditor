@@ -17,7 +17,7 @@ public:
     ~SyntaxHandler() {}
 
     Q_INVOKABLE void openFile(const QString& path);
-    Q_INVOKABLE void setDocument(QQuickTextDocument* document);
+    Q_INVOKABLE void setDocument(QQuickTextDocument* document, bool isOutput);
 
 public slots:
     QString getText();

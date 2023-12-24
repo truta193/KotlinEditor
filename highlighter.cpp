@@ -39,7 +39,8 @@ Highlighter::Highlighter(QTextDocument *parent)
         "\\bvar\\b" <<
         "\\bwhen\\b" <<
         "\\bwhile\\b";
-    foreach (const QString &pattern, keywordPatterns) {
+    foreach (const QString &pattern, keywordPatterns)
+    {
         rule.pattern = QRegularExpression(pattern);
         rule.format = keywordFormat;
         highlightingRules.append(rule);
@@ -92,10 +93,12 @@ Highlighter::Highlighter(QTextDocument *parent)
 
 void Highlighter::highlightBlock(const QString &text)
 {
-    for (const HighlightingRule &rule : highlightingRules) {
+    for (const HighlightingRule &rule : highlightingRules)
+    {
         QRegularExpression expression(rule.pattern);
         auto matches = expression.globalMatch(text);
-        while (matches.hasNext()) {
+        while (matches.hasNext())
+        {
             auto match = matches.next();
             int index = match.capturedStart();
             int length = match.capturedLength();
@@ -106,20 +109,25 @@ void Highlighter::highlightBlock(const QString &text)
     setCurrentBlockState(0);
 
     int startIndex = 0;
-    if (previousBlockState() != 1) {
+    if (previousBlockState() != 1)
+    {
         auto match = commentStartExpression.match(text);
         startIndex = match.hasMatch() ? match.capturedStart() : -1;
     }
 
-    while (startIndex >= 0) {
+    while (startIndex >= 0)
+    {
         auto match = commentEndExpression.match(text, startIndex);
         int endIndex = match.hasMatch() ? match.capturedEnd() : -1;
 
         int commentLength;
-        if (endIndex == -1) {
+        if (endIndex == -1)
+        {
             setCurrentBlockState(1);
             commentLength = text.length() - startIndex;
-        } else {
+        }
+        else
+        {
             commentLength = endIndex - startIndex;
         }
         setFormat(startIndex, commentLength, multiLineCommentFormat);
