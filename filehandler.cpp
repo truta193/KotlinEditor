@@ -32,6 +32,7 @@ bool FileHandler::saveFile()
     return true;
 }
 
+
 void FileHandler::setOutput(QString &text)
 {
     m_output = text;

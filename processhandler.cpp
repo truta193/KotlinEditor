@@ -8,11 +8,13 @@ ProcessHandler::ProcessHandler(QObject *parent, FileHandler *fileHandler)
     connect(process, &QProcess::errorOccurred, this, &ProcessHandler::processError);
     connect(process, &QProcess::readyReadStandardOutput, this, &ProcessHandler::processOutputUpdate);
     this->fileHandler = fileHandler;
+    connect(fileHandler, &FileHandler::inputChanged, this, &ProcessHandler::writeOut);
 }
 
 ProcessHandler::~ProcessHandler()
 {
     process->kill();
+    disconnect(fileHandler, &FileHandler::inputChanged, this, &ProcessHandler::writeOut);
 }
 
 
@@ -25,6 +27,11 @@ void ProcessHandler::runScript(QString cwd, QString script)
     fileHandler->appendOutput("Running " + script + "\n");
     process->start("cmd", QStringList() << "/c" << "kotlinc -script " + script);
     process->waitForStarted();
+}
+
+void ProcessHandler::writeOut(QString text) {
+    process->write(text.toUtf8());
+    fileHandler->appendOutput(text);
 }
 
 void ProcessHandler::processFinished(int exitCode, QProcess::ExitStatus exitStatus)

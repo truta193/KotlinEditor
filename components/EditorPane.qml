@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls.Basic
 import QtQuick.Layouts
+import QtQuick.Window
 
 Rectangle {
     property alias readOnlyMode: codeEditor.readOnly
@@ -21,6 +22,7 @@ Rectangle {
         anchors.fill: parent
 
         TextArea {
+
             text: if (isOutput) fileHandler.output; else fileHandler.script;
             id: codeEditor
             anchors.margins: 12
@@ -43,12 +45,15 @@ Rectangle {
                                 border.color = theme.comment
                             } else {
                                 border.color =  theme.background
-                            }
-
+                            }            
             onTextChanged: {
-                if(!isOutput)
+                 if(!isOutput)
                     fileHandler.setScript(codeEditor.text)
             }
+            Keys.onReleased: (event) =>  { if (isOutput)  {
+                                    fileHandler.inputChanged(event.text);
+                                }}
+
         }
     }
 }

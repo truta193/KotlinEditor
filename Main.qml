@@ -44,7 +44,7 @@ Rectangle {
             anchors.bottom: parent.bottom
             isOutput: true
             isHighlightingEnabled: false
-            readOnlyMode: true
+            readOnlyMode: false
         }
     }
 }

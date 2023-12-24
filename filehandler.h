@@ -39,5 +39,6 @@ signals:
     void outputChanged();
     void isBusyChanged();
     void scriptChanged();
+    void inputChanged(QString text);
 };
 

@@ -21,9 +21,13 @@ public:
 
 public slots:
     void runScript(QString cwd, QString script);
+    void writeOut(QString text);
 
 private slots:
     void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
     void processError(QProcess::ProcessError error);
     void processOutputUpdate();
+
+signals:
+    void userInputChanged();
 };
