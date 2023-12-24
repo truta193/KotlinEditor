@@ -74,47 +74,61 @@ Q_INVOKABLE void CursorHandler::setOutput(QQuickItem* outputPane)
 bool CursorHandler::validClick() {
     if (inputPane == nullptr || outputPane == nullptr) return false;
 
+    QString text = outputPane->property("text").toString();
     QRegularExpression exp("([^:\\n]+):(\\d+):(\\d+)");
-    QRegularExpressionMatch match = exp.match(outputPane->property("text").toString());
-    if (!match.hasMatch()) {
-        return false;
+    QRegularExpressionMatchIterator matchIterator = exp.globalMatch(text);
+
+    while (matchIterator.hasNext()) {
+        QRegularExpressionMatch match = matchIterator.next();
+
+        int descPositionStart = match.capturedStart(0);
+        int descPositionEnd = descPositionStart + match.captured(0).length();
+
+        // Assuming m_position is the cursor position you want to check
+        if (m_position >= descPositionStart && m_position <= descPositionEnd) {
+            qInfo() << "Match found at position" << m_position;
+            return true;
+        }
     }
 
-    int descPositionStart = outputPane->property("text").toString().indexOf(match.captured(1));
-    int descPositionEnd = descPositionStart + match.captured(1).length();
-    qInfo() << m_position << descPositionStart << descPositionEnd;
-    if (m_position < descPositionStart || m_position > descPositionEnd) return false;
-
-    return true;
+    return false;
 }
 
 void CursorHandler::moveCursor() {
     if (inputPane == nullptr || outputPane == nullptr) return;
+    QString outputText = outputPane->property("text").toString();
+    QString inputText = inputPane->property("text").toString();
+
     QRegularExpression exp("([^:\\n]+):(\\d+):(\\d+)");
-    QRegularExpressionMatch match = exp.match(outputPane->property("text").toString());
-    if (!match.hasMatch()) {
-        return;
+    QRegularExpressionMatchIterator matchIterator = exp.globalMatch(outputText);
+
+    while (matchIterator.hasNext()) {
+        QRegularExpressionMatch match = matchIterator.next();
+        int descPositionStart = match.capturedStart(0);
+        int descPositionEnd = descPositionStart + match.captured(0).length();
+        int lineNumber = match.captured(2).toInt();
+        int columnNumber = match.captured(3).toInt();
+
+        if (m_position < descPositionStart || m_position > descPositionEnd) continue;
+
+        QStringList lines = inputText.split("\n");
+        int currentLength = 0;
+
+        for (int i = 1; i < lineNumber; i++) {
+            currentLength += lines[i-1].length();
+        }
+
+        int newPos = currentLength + columnNumber - 2 + lineNumber;
+
+        QMetaObject::invokeMethod(inputPane, "forceActiveFocus");
+
+        inputPane->setProperty("activeFocus", true);
+        QTimer::singleShot(0, [this, newPos]() {
+            inputPane->setProperty("cursorPosition", newPos);
+        });
+
+        break;
     }
-
-    int lineNumber = match.captured(2).toInt();
-    int columnNumber = match.captured(3).toInt();
-
-    QStringList lines = inputPane->property("text").toString().split("\n");
-    int currentLength = 0;
-
-    for (int i = 1; i < lineNumber; i++) {
-        currentLength += lines[i-1].length();
-    }
-
-    int newPos = currentLength + columnNumber - 1;
-
-    QMetaObject::invokeMethod(inputPane, "forceActiveFocus");
-
-    inputPane->setProperty("activeFocus", true);
-    QTimer::singleShot(50, [this, newPos]() {
-        inputPane->setProperty("cursorPosition", newPos);
-    });
-    //inputPane->setProperty("cursorPosition", currentLength + columnNumber);
 }
 
 
