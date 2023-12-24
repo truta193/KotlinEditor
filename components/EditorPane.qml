@@ -39,8 +39,9 @@ Rectangle {
             background: Rectangle {
                     color: "#00000000"
                 }
-            selectByMouse: true
-            selectByKeyboard: true
+            selectByMouse: {!isOutput}
+            selectByKeyboard: {!isOutput}
+
             onFocusChanged: if (focus) {
                                 border.color = theme.comment
                             } else {
@@ -51,6 +52,11 @@ Rectangle {
                     fileHandler.setScript(codeEditor.text)
             }
             Keys.onReleased: (event) =>  { if (isOutput)  {
+                                     switch (event.key) {
+
+                                     }
+
+                                     console.info(event.text)
                                     fileHandler.inputChanged(event.text);
                                 }}
 

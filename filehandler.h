@@ -35,6 +35,8 @@ public slots:
     void setScript(QString text);
     QString getScript();
 
+    void terminateProcess(QObject *obj);
+
 signals:
     void outputChanged();
     void isBusyChanged();

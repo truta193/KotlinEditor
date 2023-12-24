@@ -9,10 +9,12 @@ ProcessHandler::ProcessHandler(QObject *parent, FileHandler *fileHandler)
     connect(process, &QProcess::readyReadStandardOutput, this, &ProcessHandler::processOutputUpdate);
     this->fileHandler = fileHandler;
     connect(fileHandler, &FileHandler::inputChanged, this, &ProcessHandler::writeOut);
+    connect(this, &ProcessHandler::processDone, fileHandler, &FileHandler::terminateProcess);
 }
 
 ProcessHandler::~ProcessHandler()
 {
+    process->closeWriteChannel();
     process->kill();
     disconnect(fileHandler, &FileHandler::inputChanged, this, &ProcessHandler::writeOut);
 }
@@ -42,6 +44,8 @@ void ProcessHandler::processFinished(int exitCode, QProcess::ExitStatus exitStat
     }
     fileHandler->appendOutput("Process finished with exit code: " + QString::number(exitCode) + "\n");
     fileHandler->setIsBusy(false);
+
+    emit processDone(this);
 }
 
 void ProcessHandler::processError(QProcess::ProcessError error)

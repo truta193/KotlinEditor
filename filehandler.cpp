@@ -29,6 +29,7 @@ bool FileHandler::saveFile()
     }
     ProcessHandler *ph = new ProcessHandler(nullptr, this);
     ph->runScript(filePath, filePath + "/" + fileName);
+    qInfo() << "Got over it";
     return true;
 }
 
@@ -77,4 +78,10 @@ void FileHandler::setScript(QString text)
         this->m_script = text;
         emit scriptChanged();
     }
+}
+
+void FileHandler::terminateProcess(QObject *obj) {
+    qInfo() << "terminate Obj";
+    if (obj != nullptr)
+        delete obj;
 }

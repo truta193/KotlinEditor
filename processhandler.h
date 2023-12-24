@@ -30,4 +30,5 @@ private slots:
 
 signals:
     void userInputChanged();
+    void processDone(ProcessHandler *ph);
 };
