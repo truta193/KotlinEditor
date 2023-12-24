@@ -7,6 +7,7 @@
 #include "theme.h"
 #include "filehandler.h"
 #include "processhandler.h"
+#include "cursorhandler.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,16 +19,19 @@ int main(int argc, char *argv[])
     Theme *theme = new Theme();
     FileHandler *fileHandler = new FileHandler();
     ProcessHandler *processHandler = new ProcessHandler();
+    CursorHandler *cursorHandler = new CursorHandler();
 
     qmlRegisterType<Highlighter>("Highlighter", 1, 0, "Highlighter");
     qmlRegisterType<Theme>("Theme", 1, 0, "Theme");
     qmlRegisterType<FileHandler>("FileHandler", 1, 0, "FileHandler");
     qmlRegisterType<ProcessHandler>("ProcessHandler", 1, 0, "ProcessHandler");
+    qmlRegisterType<CursorHandler>("CursorHandler", 1, 0, "CursorHandler");
 
     QQmlContext* rootContext = engine.rootContext();
     rootContext->setContextProperty("syntaxHandler", syntaxHandler);
     rootContext->setContextProperty("theme", theme);
     rootContext->setContextProperty("fileHandler", fileHandler);
+    rootContext->setContextProperty("cursorHandler", cursorHandler);
     rootContext->setContextProperty("processHandler", processHandler);
 
     const QUrl url(u"qrc:/KotlinEditor/App.qml"_qs);

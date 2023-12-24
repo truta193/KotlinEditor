@@ -22,44 +22,54 @@ Rectangle {
         anchors.fill: parent
 
         TextArea {
-
-            text: if (isOutput) fileHandler.output; else fileHandler.script;
             id: codeEditor
+            text: if (isOutput) fileHandler.output; else fileHandler.script;
             anchors.margins: 12
             font.pointSize: 12
             font.family: "JetBrains Mono"
             color: theme.foreground
             selectionColor: theme.currentLine
-            Component.onCompleted: {
-                if (isHighlightingEnabled)
-                    syntaxHandler.setDocument(codeEditor.textDocument, false);
-                else
-                    syntaxHandler.setDocument(codeEditor.textDocument, true);
-            }
+            selectByMouse: !isOutput
+            selectByKeyboard: !isOutput
+
             background: Rectangle {
                     color: "#00000000"
                 }
-            selectByMouse: {!isOutput}
-            selectByKeyboard: {!isOutput}
+
+
+            Component.onCompleted: {
+                syntaxHandler.setDocument(codeEditor.textDocument, !isHighlightingEnabled);
+                if (isOutput) {
+                    cursorHandler.setOutput(codeEditor)
+                } else {
+                    cursorHandler.setInput(codeEditor)
+                }
+            }
 
             onFocusChanged: if (focus) {
                                 border.color = theme.comment
                             } else {
                                 border.color =  theme.background
-                            }            
+                            }
+
             onTextChanged: {
                  if(!isOutput)
                     fileHandler.setScript(codeEditor.text)
             }
-            Keys.onReleased: (event) =>  { if (isOutput)  {
-                                     switch (event.key) {
 
-                                     }
-
-                                     console.info(event.text)
+            Keys.onReleased: (event) =>  { if (isOutput) {
                                     fileHandler.inputChanged(event.text);
                                 }}
 
+            MouseArea {
+                id:mouseArea
+                anchors.fill: parent
+                enabled: readOnlyMode
+                onClicked: (mouse) => {
+                               if (mouse.button !== Qt.LeftButton) return;
+                               cursorHandler.position = codeEditor.positionAt(mouseX, mouseY)
+                           }
+            }
         }
     }
 }

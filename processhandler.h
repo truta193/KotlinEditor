@@ -13,7 +13,6 @@ class ProcessHandler : public QObject
 private:
     FileHandler *fileHandler;
     QProcess *process;
-    QPointer<QQuickItem> outputPane;
 
 public:
     explicit ProcessHandler(QObject *parent = nullptr, FileHandler *fileHandler = nullptr);

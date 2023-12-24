@@ -8,8 +8,8 @@ Linker::Linker(QTextDocument *parent)
     HighlightingRule rule;
 
     locationDescription.setForeground(theme.cyan());
-    locationDescription.setAnchor(true);
-    locationDescription.setAnchorHref("https://github.com/");
+    // locationDescription.setAnchor(true);
+    // locationDescription.setAnchorHref("https://github.com/");
     rule.pattern = QRegularExpression("([^:\\n]+:\\d+:\\d+)");
     rule.format = locationDescription;
     highlightingRules.append(rule);
