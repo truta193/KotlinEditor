@@ -10,12 +10,14 @@ ProcessHandler::ProcessHandler(QObject *parent, FileHandler *fileHandler)
     this->fileHandler = fileHandler;
     connect(fileHandler, &FileHandler::inputChanged, this, &ProcessHandler::writeOut);
     connect(this, &ProcessHandler::processDone, fileHandler, &FileHandler::terminateProcess);
+    connect(fileHandler, &FileHandler::terminate, this, &ProcessHandler::terminateEarly);
 }
 
 ProcessHandler::~ProcessHandler()
 {
     process->closeWriteChannel();
     process->kill();
+    fileHandler->setIsBusy(false);
     disconnect(fileHandler, &FileHandler::inputChanged, this, &ProcessHandler::writeOut);
 }
 
@@ -36,6 +38,12 @@ void ProcessHandler::writeOut(QString text) {
     fileHandler->appendOutput(text);
 }
 
+void ProcessHandler::terminateEarly()
+{
+    fileHandler->appendOutput("Process terminated by user!\n");
+    emit processDone(this);
+}
+
 void ProcessHandler::processFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
     if (exitCode != 0 || exitStatus == QProcess::CrashExit)
@@ -43,14 +51,13 @@ void ProcessHandler::processFinished(int exitCode, QProcess::ExitStatus exitStat
         fileHandler->appendOutput(process->readAllStandardError());
     }
     fileHandler->appendOutput("Process finished with exit code: " + QString::number(exitCode) + "\n");
-    fileHandler->setIsBusy(false);
 
     emit processDone(this);
 }
 
 void ProcessHandler::processError(QProcess::ProcessError error)
 {
-    //fileHandler->appendOutput("\n" + process->errorString() + "\n");
+    fileHandler->appendOutput("\n" + process->errorString() + "\n");
     //emit resultReady("Error occurred: " + process->errorString());
 }
 

@@ -21,6 +21,7 @@ public:
 public slots:
     void runScript(QString cwd, QString script);
     void writeOut(QString text);
+    void terminateEarly();
 
 private slots:
     void processFinished(int exitCode, QProcess::ExitStatus exitStatus);

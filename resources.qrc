@@ -23,5 +23,6 @@
         <file>assets/ic_maximize.svg</file>
         <file>assets/ic_maximize_back.svg</file>
         <file>assets/ic_minimize.svg</file>
+        <file>assets/ic_stop.svg</file>
     </qresource>
 </RCC>

@@ -41,6 +41,29 @@ Rectangle {
         }
     }
 
+    ActionButton {
+        id: terminateButton
+        iconPath: "qrc:/icons/assets/ic_stop.svg"
+        anchors.top: parent.top
+        anchors.right: runButton.left
+        visible: false
+
+        Connections {
+            target: fileHandler
+
+            function onIsBusyChanged() {
+                if (fileHandler.isBusy === true)
+                    terminateButton.visible = true
+                else
+                    terminateButton.visible = false
+            }
+        }
+
+        onClicked: {
+            fileHandler.terminate()
+        }
+    }
+
     Label {
         id: appLabel
         anchors.top: parent.top
