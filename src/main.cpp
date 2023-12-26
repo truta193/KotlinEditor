@@ -1,13 +1,13 @@
+#include <QFontDatabase>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QFontDatabase>
 #include <QQmlContext>
-#include "highlighter.h"
-#include "syntaxHandler.h"
-#include "theme.h"
-#include "filehandler.h"
-#include "processhandler.h"
-#include "cursorhandler.h"
+#include "include/cursorhandler.h"
+#include "include/filehandler.h"
+#include "include/highlighter.h"
+#include "include/processhandler.h"
+#include "include/syntaxhandler.h"
+#include "include/theme.h"
 
 int main(int argc, char *argv[])
 {

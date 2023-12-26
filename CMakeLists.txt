@@ -10,7 +10,7 @@ find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
 qt_standard_project_setup()
 
 qt_add_executable(appKotlinEditor
-    main.cpp
+    src/main.cpp
     resources.qrc
 )
 
@@ -23,16 +23,16 @@ qt_add_qml_module(appKotlinEditor
     QML_FILES components/ActionButton.qml
     RESOURCES resources.qrc
     SOURCES
-    SOURCES highlighter.h highlighter.cpp
+    SOURCES include/highlighter.h src/highlighter.cpp
     SOURCES
-    SOURCES syntaxHandler.h syntaxHandler.cpp
-    SOURCES theme.h theme.cpp
-    SOURCES filehandler.h filehandler.cpp
+    SOURCES include/syntaxhandler.h src/syntaxhandler.cpp
+    SOURCES include/theme.h src/theme.cpp
+    SOURCES include/filehandler.h src/filehandler.cpp
     SOURCES
-    SOURCES processhandler.h processhandler.cpp
+    SOURCES include/processhandler.h src/processhandler.cpp
     QML_FILES components/Toolbar.qml
-    SOURCES cursorhandler.h cursorhandler.cpp
-    SOURCES linker.h linker.cpp
+    SOURCES include/cursorhandler.h src/cursorhandler.cpp
+    SOURCES include/linker.h src/linker.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

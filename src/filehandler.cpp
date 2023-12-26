@@ -1,5 +1,6 @@
-#include "filehandler.h"
-#include <processhandler.h>
+#include "include/filehandler.h"
+#include "include/processhandler.h"
+
 FileHandler::FileHandler(QObject *parent)
     : QObject{parent}
 {

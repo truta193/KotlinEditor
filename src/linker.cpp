@@ -1,5 +1,5 @@
-#include "linker.h"
-#include "theme.h"
+#include "include/linker.h"
+#include "include/theme.h"
 
 Linker::Linker(QTextDocument *parent)
     : QSyntaxHighlighter(parent)

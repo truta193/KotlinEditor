@@ -1,6 +1,7 @@
-#include "processhandler.h"
+#include "include/processhandler.h"
 #include <QQmlContext>
 #include <QQmlEngine>
+
 ProcessHandler::ProcessHandler(QObject *parent, FileHandler *fileHandler)
     : QObject{parent}, process(new QProcess(this))
 {

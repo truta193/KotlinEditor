@@ -1,4 +1,4 @@
-#include "cursorhandler.h"
+#include "include/cursorhandler.h"
 #include <QRegularExpression>
 #include <QTimer>
 

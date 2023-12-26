@@ -1,4 +1,4 @@
-#include "theme.h"
+#include "include/theme.h"
 
 Theme::Theme(QObject *parent)
     : QObject{parent}

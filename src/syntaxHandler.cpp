@@ -1,7 +1,7 @@
-#include "syntaxHandler.h"
-#include "highlighter.h"
-#include "linker.h"
-#include<QFile>
+#include "include/syntaxhandler.h"
+#include <QFile>
+#include "include/highlighter.h"
+#include "include/linker.h"
 
 SyntaxHandler::SyntaxHandler(QObject *parent)
     : QObject{parent}
