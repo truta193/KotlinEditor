@@ -11,7 +11,7 @@ Here is a YouTube video showcasing the app's features: //LINK GOES HERE. (slight
 Kotlinc ***MUST*** be added to PATH. The winget package will not work. It creates a symlink of sorts, but it does not add kotlinc to PATH.
 Manual installation is recommended.
 
-**A Windows package is provided which should work**. If it fails to work:
+**A Windows release is provided which should work**. If it fails to work:
 1. Clone this repository.
 2. Make sure your Qt version is 6.4.X or higher (tested on 6.6.1).
 3. Open it using Qt Creator (it specifically wants the CMakeLists.txt file).
