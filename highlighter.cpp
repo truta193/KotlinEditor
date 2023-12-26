@@ -46,19 +46,6 @@ Highlighter::Highlighter(QTextDocument *parent)
         highlightingRules.append(rule);
     }
 
-    singleLineCommentFormat.setForeground(theme.comment());
-    rule.pattern = QRegularExpression("//[^\n]*");
-    rule.format = singleLineCommentFormat;
-    highlightingRules.append(rule);
-
-    multiLineCommentFormat.setForeground(theme.comment());
-
-
-    quotationFormat.setForeground(theme.yellow());
-    rule.pattern = QRegularExpression("\".*\"");
-    rule.format = quotationFormat;
-    highlightingRules.append(rule);
-
 
     functionFormat.setForeground(theme.green());
     rule.pattern = QRegularExpression("\\b[a-z][A-Za-z0-9_]+(?=\\()");
@@ -86,6 +73,18 @@ Highlighter::Highlighter(QTextDocument *parent)
     rule.pattern = QRegularExpression("[()\\[\\]{}]");
     rule.format = parenthesisFormat;
     highlightingRules.append(rule);
+
+    quotationFormat.setForeground(theme.yellow());
+    rule.pattern = QRegularExpression("\".*\"");
+    rule.format = quotationFormat;
+    highlightingRules.append(rule);
+
+    singleLineCommentFormat.setForeground(theme.comment());
+    rule.pattern = QRegularExpression("//[^\n]*");
+    rule.format = singleLineCommentFormat;
+    highlightingRules.append(rule);
+
+    multiLineCommentFormat.setForeground(theme.comment());
 
     commentStartExpression = QRegularExpression("/\\*");
     commentEndExpression = QRegularExpression("\\*/");
