@@ -3,7 +3,7 @@
 This is a simple script editing app for Kotlin. 
 It is written in C++ and Qt. It uses kotlinc, the Kotlin command-line compiler, to run the scripts.
 
-Here is a YouTube video showcasing the app's features: //LINK GOES HERE. (slightly long but it is sectioned)
+Here is a YouTube video showcasing the app's features https://youtu.be/372DdW9mgQY?si=68zVQvOeze4b9gHe (slightly long but it is timestamped)
 
 ## Requirements
 
