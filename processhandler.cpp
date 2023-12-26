@@ -30,7 +30,7 @@ void ProcessHandler::runScript(QString cwd, QString script)
     process->setWorkingDirectory(cwd);
     fileHandler->appendOutput("Running " + script + "\n");
     process->start("cmd", QStringList() << "/c" << "kotlinc -script " + script);
-    process->waitForStarted();
+    process->waitForStarted(5000);
 }
 
 void ProcessHandler::writeOut(QString text) {
@@ -57,8 +57,8 @@ void ProcessHandler::processFinished(int exitCode, QProcess::ExitStatus exitStat
 
 void ProcessHandler::processError(QProcess::ProcessError error)
 {
-    fileHandler->appendOutput("\n" + process->errorString() + "\n");
-    //emit resultReady("Error occurred: " + process->errorString());
+    fileHandler->appendOutput("A process error occured: " + process->errorString() + "\n");
+    emit processDone(this);
 }
 
 void ProcessHandler::processOutputUpdate()

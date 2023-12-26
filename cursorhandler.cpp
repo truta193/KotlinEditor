@@ -33,10 +33,8 @@ bool CursorHandler::validClick()
         int descPositionStart = match.capturedStart(0);
         int descPositionEnd = descPositionStart + match.captured(0).length();
 
-        if (m_position >= descPositionStart && m_position <= descPositionEnd) {
-            qInfo() << "Match found at position" << m_position;
+        if (m_position >= descPositionStart && m_position <= descPositionEnd)
             return true;
-        }
     }
 
     return false;
@@ -97,8 +95,6 @@ void CursorHandler::setPosition(int pos)
 
 void CursorHandler::onPositionChanged()
 {
-    if (validClick()) {
-        qInfo() << "valid click";
+    if (validClick())
         moveCursor();
-    }
 }

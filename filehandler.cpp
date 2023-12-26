@@ -14,7 +14,6 @@ FileHandler::FileHandler(QObject *parent)
     QDir tempDir = QDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
     tempDir.cd(QString("KotlinEditor"));
     file = new QFile(tempDir.filePath(fileName));
-    qInfo() << filePath;
 }
 
 bool FileHandler::saveFile()
@@ -29,7 +28,6 @@ bool FileHandler::saveFile()
     }
     ProcessHandler *ph = new ProcessHandler(nullptr, this);
     ph->runScript(filePath, filePath + "/" + fileName);
-    qInfo() << "Got over it";
     return true;
 }
 
@@ -82,7 +80,6 @@ void FileHandler::setScript(QString text)
 
 void FileHandler::terminateProcess(QObject *obj)
 {
-    qInfo() << "terminate Obj";
     if (obj != nullptr)
         delete obj;
 }
