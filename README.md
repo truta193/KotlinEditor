@@ -3,7 +3,10 @@
 This is a simple script editing app for Kotlin. 
 It is written in C++ and Qt. It uses kotlinc, the Kotlin command-line compiler, to run the scripts.
 
-Here is a YouTube video showcasing the app's features https://youtu.be/372DdW9mgQY?si=68zVQvOeze4b9gHe (slightly long but it is timestamped)
+## Showcase
+Here is a YouTube video showcasing the app's features https://youtu.be/372DdW9mgQY?si=68zVQvOeze4b9gHe (slightly long but it is timestamped). The same preview, embedded here:
+
+https://github.com/truta193/KotlinEditor/assets/30195907/ad83df4a-1465-48c8-a1e7-1aff67c0dcd7
 
 ## Requirements
 
