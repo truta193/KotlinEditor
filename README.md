@@ -6,7 +6,9 @@ It is written in C++ and Qt. It uses kotlinc, the Kotlin command-line compiler, 
 ## Showcase
 Here is a YouTube video showcasing the app's features https://youtu.be/372DdW9mgQY?si=68zVQvOeze4b9gHe (slightly long but it is timestamped). The same preview, embedded here:
 
-https://github.com/truta193/KotlinEditor/assets/30195907/ad83df4a-1465-48c8-a1e7-1aff67c0dcd7
+
+https://github.com/truta193/KotlinEditor/assets/30195907/0bef3d19-a539-410d-8728-d3bc384e064e
+
 
 ## Requirements
 
